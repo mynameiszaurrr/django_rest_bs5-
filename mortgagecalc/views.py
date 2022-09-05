@@ -79,4 +79,3 @@ class BanksAPIWiew(APIView):
             return Response({'error': "Ключа pk нет в БД"})
         instance.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
-
