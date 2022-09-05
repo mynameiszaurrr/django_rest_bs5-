@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+    <title>Ипотечный калькулятор — рассчитать ипотеку онлайн в {{ year }} году, расчёт ежемесячного платежа</title>
+</head>
+<body class="bg-light bg-opacity-75">
+    <header>
+        <nav class="navbar navbar-expand-lg">
+          <div class="container">
+            <img src="https://s91588.cdn.ngenix.net/shared/static/images/design-system/sravni-logo-sign.png" alt="logo" height="20">
+            <a class="navbar-brand" href="https://www.sravni.ru/">СРАВНИ</a>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="#">Деньги</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link active" href="#">Страхование</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link active" href="#">Бизнес</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link active">Образование</a>
+                </li>
+                  <li class="nav-item">
+                  <a class="nav-link active">Журнал</a>
+                </li>
+              </ul>
+              <form class="d-flex" role="search">
+                <input class="form-control me-2" type="search" placeholder="Что искать?" aria-label="Search">
+                <button class="btn btn-outline-success" type="submit">Найти</button>
+              </form>
+            </div>
+          </div>
+        </nav>
+    </header><br><br>
+    <div class="container">
+        <h1>Ипотечный калькулятор<br> в {{ city }}</h1>
+    </div><br>
+    <div class="container">
+        <div class="row">
+            <div class="col-7">
+                <p class="text-secondary">Рассчитайте ипотеку онлайн и выберите лучшие условия банков в {{ year }} году! На {{ date }} вам доступно 405 предложений в 64 банках со ставками от 0,1% и первым взносом от 0%, на сумму до 100 000 000!</p>
+            </div>
+            <div class="col-5">
+            </div>
+        </div>
+    </div><br>
+    <div class="alert alert-primary container" role="alert">
+        <div class="row">
+          <div class="col-3">
+            <div class="form-floating">
+              <input type="number" class="form-control" id="floatingInputGrid" placeholder="Стоимость недвижимости">
+              <label for="floatingInputGrid">Стоимость недвижимости</label>
+            </div>
+          </div>
+          <div class="col-3">
+            <div class="form-floating">
+              <input type="number" class="form-control" id="floatingInputGrid" placeholder="Первоначальный взнос">
+              <label for="floatingInputGrid">Первоначальный взнос</label>
+            </div>
+             </div>
+          <div class="col-3">
+            <div class="form-floating">
+              <select class="form-select" id="floatingSelectGrid" aria-label="Floating label select example">
+                <option selected>Любой</option>
+                <option value="1">1 год</option>
+                <option value="2">2 года</option>
+                <option value="3">3 года</option>
+                <option value="4">4 года</option>
+                <option value="5">5 лет</option>
+                <option value="6">6 лет</option>
+                <option value="7">7 лет</option>
+                <option value="8">8 лет</option>
+                <option value="9">9 лет</option>
+                <option value="10">10 лет</option>
+                <option value="12">12 лет</option>
+                <option value="15">15 лет</option>
+                <option value="20">20 лет</option>
+                <option value="25">25 лет</option>
+                <option value="30">30 лет</option>
+              </select>
+              <label for="floatingSelectGrid">Cрок</label>
+            </div>
+          </div>
+        <div class="col-3">
+            <div class="d-grid gap-2 col mx-auto">
+                <button type="submit" class="btn btn-dark btn-lg">Показать ... </button>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+</body>
+</html>
