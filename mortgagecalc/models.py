@@ -10,7 +10,7 @@ class InputData(models.Model):
 
 
 class BanksBase(models.Model):
-    payment = models.IntegerField(max_length=20, null=True, verbose_name='Платеж в месяц')
+    payment = models.IntegerField(max_length=20, null=True, verbose_name='Платеж в месяц', default=None)
     bank_name = models.CharField(max_length=20, verbose_name='Название банка')
     term_min = models.IntegerField(max_length=3, verbose_name='Срок ипотеки, ОТ')
     term_max = models.IntegerField(max_length=3, verbose_name='Срок ипотеки, ДО')

@@ -6,5 +6,6 @@ urlpatterns = [
     path('', views.index),
     path('admin/', admin.site.urls),
     path('api/offer/', views.BanksAPIWiew.as_view()),
-    path('api/offer/<int:pk>/', views.BanksAPIWiew.as_view())
+    path('api/offer/<int:pk>/', views.BanksAPIWiew.as_view()),
+    path('search/', views.index_search)
 ]

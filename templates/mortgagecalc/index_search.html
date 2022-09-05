@@ -97,24 +97,24 @@
         </div>
         </form>
     </div>
-    {% for bank in banks %}
+    {% for pr in price %}
     <div class="alert alert-primary container p-3 mb-2 bg-light text-dark" role="alert">
         <div class="row">
         <div class="col-3">
             <p class="text-secondary">Банк</p>
-            <h6>«{{ bank.bank_name }}»</h6>
+            <h6>«{{ pr.bank_name }}»</h6>
         </div>
         <div class="col-2">
             <p class="text-secondary">Ставка</p>
-            <h6>От {{ bank.rate_min }}</h6>
+            <h6>От {{ pr.rate_min }}</h6>
         </div>
          <div class="col-2">
              <p class="text-secondary">Сумма</p>
-                <h6>{{ bank.payment_min }} - {{ bank.payment_max }} ₽</h6>
+                <h6>{{ pr.payment_min }} - {{ pr.payment_max }} ₽</h6>
         </div>
          <div class="col-3">
              <p class="text-secondary">Первоначальный взнос</p>
-            <h6>От {{ bank.payment }}%</h6>
+            <h6>От {{ pr.payment }}</h6>
         </div>
         <div class="col-2">
             <p class="text-secondary"> </p>
