@@ -8,6 +8,7 @@ from rest_framework.views import APIView
 from .models import BanksBase
 from .forms import CalcForm
 from .serializers import BankSerializer
+from .calc import*
 
 now = datetime.now()
 
@@ -29,21 +30,42 @@ def index(request):
 
 def index_search(request):
     if request.method == 'POST':
-        banks = BanksBase.objects.all()
         calc_form = CalcForm()
         get_price = request.POST.get('price')
         get_rate = request.POST.get('rate')
+        get_credit_time = request.POST.get('rate_time')
         price = BanksBase.objects.filter(payment_min__lt=int(get_price), rate_min__lt=int(get_rate))
         banks_count = BanksBase.objects.filter(payment_min__lt=int(request.POST.get('price')), rate_min__lt=int(request.POST.get('rate'))).values().count()
-        # pay_in_mouth =
+        if get_rate.isnumeric():
+            rate_num = get_rate
+        else:
+            rate_num = 0
+        banks_list = []
+        banks_list_overpay = []
+        credi_in_mon = int(get_credit_time)*12
+        for bank_perc in price:
+            banks_list.append(round(pay_in_mon(get_price, rate_num, bank_perc.rate_min, credi_in_mon)))
+        for overp in price:
+            pay = pay_in_mon(get_price, rate_num, overp.rate_min, credi_in_mon)
+            banks_list_overpay.append(round(overpay(pay, credi_in_mon, get_price, rate_num)))
+        start_number = 1
+        list_start = 0
+        values_list = []
+        for value in price.values():
+            vdict = value
+            vdict['pay_on_month'] = banks_list[list_start]
+            vdict['overpay'] = banks_list_overpay[list_start]
+            values_list.append(vdict)
+            start_number += 1
+            list_start += 1
         data = {
             'city': "Москве", # список городов, где можно проводить поиск
             'year': now.year,
             'date': now.strftime("%d.%m.%Y"),
             'calc_form': calc_form,
-            'banks': banks,
             "banks_count": banks_count,
-            'price': price
+            'values': price.values(),
+            'values_list': values_list,
         }
         return render(request, 'mortgagecalc/index_search.html', context=data)
     else:
