@@ -1,6 +1,6 @@
 from datetime import datetime
 from django.forms import model_to_dict
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from rest_framework import generics, status
 from rest_framework.response import Response
@@ -28,20 +28,26 @@ def index(request):
 
 
 def index_search(request):
-    banks = BanksBase.objects.all()
-    calc_form = CalcForm()
-    price = BanksBase.objects.filter(payment_min__lt=int(request.POST.get('price')), rate_min__lt=int(request.POST.get('rate')))
-    banks_count = BanksBase.objects.filter(payment_min__lt=int(request.POST.get('price')), rate_min__lt=int(request.POST.get('rate'))).values().count()
-    data = {
-        'city': "Москве", # список городов, где можно проводить поиск
-        'year': now.year,
-        'date': now.strftime("%d.%m.%Y"),
-        'calc_form': calc_form,
-        'banks': banks,
-        "banks_count": banks_count,
-        'price': price
-    }
-    return render(request, 'mortgagecalc/index_search.html', context=data)
+    if request.method == 'POST':
+        banks = BanksBase.objects.all()
+        calc_form = CalcForm()
+        get_price = request.POST.get('price')
+        get_rate = request.POST.get('rate')
+        price = BanksBase.objects.filter(payment_min__lt=int(get_price), rate_min__lt=int(get_rate))
+        banks_count = BanksBase.objects.filter(payment_min__lt=int(request.POST.get('price')), rate_min__lt=int(request.POST.get('rate'))).values().count()
+        # pay_in_mouth =
+        data = {
+            'city': "Москве", # список городов, где можно проводить поиск
+            'year': now.year,
+            'date': now.strftime("%d.%m.%Y"),
+            'calc_form': calc_form,
+            'banks': banks,
+            "banks_count": banks_count,
+            'price': price
+        }
+        return render(request, 'mortgagecalc/index_search.html', context=data)
+    else:
+        return HttpResponseRedirect('http://127.0.0.1:8000/')
 
 
 class BanksAPIWiew(APIView):
